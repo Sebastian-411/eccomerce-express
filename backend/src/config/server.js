@@ -5,13 +5,18 @@
  */
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 
 // Imports routes for product management, authentication, and cart
 const adminRoutes = require('../routes/productRoutes');
 const productRoutes = require('../routes/productRoutes');
 const authRoutes = require('../routes/authRoutes');
 const cartRoutes = require('../routes/cartRoutes');
+
+app.use('/uploads', express.static('../uploads'));
+
 
 // Middleware to parse request bodies as JSON
 app.use(express.json());

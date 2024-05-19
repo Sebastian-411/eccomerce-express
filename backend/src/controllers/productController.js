@@ -1,3 +1,22 @@
+const multer = require('multer');
+const path = require('path');
+const { users, products } = require('../dataStore');
+
+// Set up multer storage configuration
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'src/uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Create multer instance
+const upload = multer({ storage: storage });
+
+exports.upload = upload;
+
 /**
  * Adds a new product to the product list.
  * 
@@ -31,9 +50,10 @@ exports.addProduct = async (req, res) => {
 
         // Extract product details from the request body
         const { name, description, price, quantity } = req.body;
+        const image = req.file;
 
         // Validate required fields
-        if (!name || !description || !price || !quantity) {
+        if (!name || !description || !price || !quantity || !image) {
             return res.status(400).send('Todos los campos son obligatorios');
         }
 
@@ -41,7 +61,14 @@ exports.addProduct = async (req, res) => {
         const newProductId = products.size + 1;
 
         // Create the new product object
-        const newProduct = { id: newProductId, name, description, price, quantity };
+        const newProduct = {
+            id: newProductId,
+            name,
+            description,
+            price,
+            quantity,
+            imageUrl: `src/uploads/${image.filename}`
+        };
 
         // Add the new product to the product list
         products.set(newProductId, newProduct);
@@ -54,6 +81,9 @@ exports.addProduct = async (req, res) => {
     }
 };
 
+
+const fs = require('fs');
+
 /**
  * Retrieves all products from the product list.
  * 
@@ -62,10 +92,24 @@ exports.addProduct = async (req, res) => {
  * @returns {object} - The response containing the list of products.
  */
 exports.getProducts = (req, res) => {
-    // Convert products map to an array and send as response
-    const productsArray = Array.from(products.values());
+    // Convert products map to an array
+    const productsArray = Array.from(products.values()).map(product => {
+        const imageBuffer = fs.readFileSync(product.imageUrl);
+        const imageBase64 = imageBuffer.toString('base64');
+    
+        const productWithoutImageLink = { ...product };
+        delete productWithoutImageLink.imageLink;
+    
+        return {
+            ...productWithoutImageLink,
+            image: imageBase64
+        };
+    });
+    
+    // Send as response
     res.send(productsArray);
 };
+
 
 
 /**

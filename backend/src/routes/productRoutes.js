@@ -15,7 +15,7 @@ const productController = require('../controllers/productController');
  * @param {string} path - Express route path.
  * @param {callback} middleware - Express middleware.
  */
-router.post('/products', productController.addProduct);
+router.post('/products', productController.upload.single('image'), productController.addProduct);
 
 /**
  * Route for retrieving all products.
