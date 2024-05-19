@@ -28,4 +28,8 @@ router.get('/cart', cartController.getCart);
  */
 router.post('/cart', cartController.updateCart);
 
+
+router.post('/cart/purchase', cartController.buyCart);
+
+
 module.exports = router;

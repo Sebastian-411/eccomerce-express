@@ -2,6 +2,7 @@
  * Represents a user of the system.
  */
 const Cart = require('./Cart');
+const Purchase = require('./Purchase');
 const crypto = require('crypto');
 
 class User {
@@ -17,8 +18,14 @@ class User {
         this.rol = rol;
         this.cart = new Cart();
         this.token = this.generateToken();
+        this.purchases = [];
     }
 
+    addPurchase(purchase) {
+        this.purchases.push(purchase);
+    }
+
+    
     /**
      * Hashes the provided password using SHA-256 algorithm.
      * @param {string} password - The password to hash.

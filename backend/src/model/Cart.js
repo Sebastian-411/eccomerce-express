@@ -1,3 +1,5 @@
+const { users, products, purchases} = require('../dataStore');
+
 /**
  * Represents a user's shopping cart.
  */
@@ -57,6 +59,11 @@ class Cart {
 
         return productsInfo;
     }
+
+    clear() {
+        this.products = new Map();
+    }
+
 }
 
 module.exports = Cart;
