@@ -19,32 +19,10 @@ This is main CSS file that contains custom style rules used in this template
 
 CSS STRUCTURE:
 
-    
-/*--------------------------------------------------------------
-/** 1. VARIABLES
---------------------------------------------------------------*/
-:root {
-  --accent-color:             #717171;
-  --white-color:              #fff;
-  --black-color:              #000;
-  --gray-color:               #F3F3F3;
-  --gray-color-300:           #D8D8D8;
-  --gray-color-500:           #AEAEAE;
-  --gray-color-800:           #3A3A3A;
-  --light-gray-color:         #D7DDDF;
-  --primary-color:            #72AEC8;
-  --bs-primary-rgb:           114,174,200;
-  --light-color:              #f8f9fa;
-  --dark-color:               #212529;
-  --light-blue-color:         #EDF1F3;
-  --navbar-color-color:       #131814;
-  --swiper-theme-color:       #4A4A4A;
-  --swiper-pagination-color:  #4A4A4A;
-
-}
-
 /* on mobile devices below 600px
  */
+
+@import url(templates/auth/templates_Style/variables.css);
 @media screen and (max-width: 600px) {
     :root {
         --header-height : 100px;

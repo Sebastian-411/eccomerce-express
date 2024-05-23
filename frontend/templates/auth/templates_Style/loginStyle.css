@@ -1,3 +1,5 @@
+@import url(variables.css);
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4; 
@@ -26,7 +28,7 @@ body {
 .login-container input[type="text"],
 .login-container input[type="password"] {
     width: 80%;
-    padding: 15px;
+    padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -74,4 +76,11 @@ body {
 
 .signup-link a:hover {
     text-decoration: underline;
+}
+
+.lock-icon {
+    height: 20px;
+    width: 20px;
+    border: 1px solid #ccc;
+    background-color: var(--light-gray-color)
 }
