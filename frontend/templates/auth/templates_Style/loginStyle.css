@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-}
+} 
 
 .login-container {
     background-color: #fff;
@@ -15,6 +15,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    align-items: center;
 }
 
 .login-container h1 {
@@ -53,6 +54,7 @@ body {
     color: #fff;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 35px;
 }
 
 .login-container button:hover {

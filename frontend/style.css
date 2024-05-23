@@ -605,7 +605,7 @@ h3.cart-title {
 }
 
 /*------------ Offcanvas -------------- */
-#header-nav .navbar-toggler:focus {
+/* #header-nav .navbar-toggler:focus {
     box-shadow: none;
 }
 #header-nav .offcanvas.show {
@@ -614,7 +614,7 @@ h3.cart-title {
 }
 #header-nav .offcanvas-end {
     width: 500px;
-}
+} */
 .offcanvas.show .nav-item a.nav-link {
     font-size: 2em;
 }
