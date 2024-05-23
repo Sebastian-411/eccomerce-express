@@ -1,8 +1,7 @@
 @import url(variables.css);
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--light-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,11 +11,11 @@ body {
 }
 
 .login-container {
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: 50%;
+  height: 65%;
   width: 300px;
   text-align: center;
   align-items: center;
@@ -36,7 +35,7 @@ body {
 }
 
 .login-container button {
-  width: 100%;
+  width: 70%;
   padding: 15px;
   background-color: black;
   border: none;
@@ -48,7 +47,7 @@ body {
 }
 
 .login-container button:hover {
-  background-color: #646464;
+  background-color: var(--accent-color);
 }
 
 .signup-link {
@@ -113,7 +112,21 @@ svg {
   color: var(--accent-color);
 }
 
+#footer {
+  width: 100%;
+  background-color: var(--light-gray-color);
+  margin-top: 5%;
+  height: 15%;
+}
+
+.footer-container {
+  height: 100%;
+  width: 100%;
+}
+
 .social-links {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,11 +137,29 @@ ul {
   list-style-type: none;
 }
 
-#footer {
-  width: 100%;
-  background-color: var(--gray-color-300);
-  margin-top: 5%;
-  position: sticky;
-  bottom: 0;
+h2 {
+  color: var(--gray-color-800);
 }
+
+.facebook:hover {
+  color: var(--gray-color-800);
+}
+
+.instagram:hover {
+  color: var(--gray-color-800);
+}
+
+.twitter:hover {
+  color: var(--gray-color-800);
+}
+
+.linkedin:hover {
+  color: var(--gray-color-800);
+}
+
+.youtube:hover {
+  color: var(--gray-color-800);
+}
+
+
 

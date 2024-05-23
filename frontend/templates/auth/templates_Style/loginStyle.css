@@ -1,86 +1,169 @@
 @import url(variables.css);
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-} 
-
-.login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-    align-items: center;
+  background-color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-.login-container h1 {
-    margin-bottom: 20px;
-    color: #333;
+.login-container {
+  background-color: var(--white-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 65%;
+  width: 300px;
+  text-align: center;
+  align-items: center;
 }
 
 .login-container input[type="text"],
 .login-container input[type="password"] {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f4f4f4;
-}
-
-.login-container a.forgot-password {
-    display: block;
-    margin: 10px 0;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.login-container a.forgot-password:hover {
-    text-decoration: underline;
+  width: 80%;
+  padding: 10px;
+  height: 20px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: var(--accent-color);
+  background-color: var(--light-color);
 }
 
 .login-container button {
-    width: 100%;
-    padding: 15px;
-    background-color: black;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 35px;
+  width: 70%;
+  padding: 15px;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
 .login-container button:hover {
-    background-color: #646464;
+  background-color: var(--accent-color);
 }
 
 .signup-link {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #333;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
 }
 
 .signup-link a {
-    color: #007bff;
-    text-decoration: none;
+  color: #007bff;
+  text-decoration: none;
 }
 
 .signup-link a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+.username-icon {
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 10px 0;
+  background-color: var(--light-gray-color)
 }
 
 .lock-icon {
-    height: 20px;
-    width: 20px;
-    border: 1px solid #ccc;
-    background-color: var(--light-gray-color)
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 10px 0;
+  background-color: var(--light-gray-color)
 }
+
+.username-input {
+  display: flex;
+  flex-direction: row;
+}
+
+.password-input {
+  display: flex;
+  flex-direction: row;
+}
+
+input:focus {
+  outline: none;
+}
+
+p {
+  color: var(--accent-color);
+}
+
+svg {
+  height: 20px;
+  width: 20px;
+  padding-right: 30px;
+  color: var(--accent-color);
+}
+
+#footer {
+  width: 100%;
+  background-color: var(--light-gray-color);
+  margin-top: 5%;
+  height: 15%;
+}
+
+.footer-container {
+  height: 100%;
+  width: 100%;
+}
+
+.social-links {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+}
+
+h2 {
+  color: var(--gray-color-800);
+}
+
+.register-redirection {
+    margin-top: 30px;
+}
+
+.facebook:hover {
+  color: var(--gray-color-800);
+}
+
+.instagram:hover {
+  color: var(--gray-color-800);
+}
+
+.twitter:hover {
+  color: var(--gray-color-800);
+}
+
+.linkedin:hover {
+  color: var(--gray-color-800);
+}
+
+.youtube:hover {
+  color: var(--gray-color-800);
+}
+
+
+
