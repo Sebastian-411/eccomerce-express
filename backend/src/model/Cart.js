@@ -1,5 +1,5 @@
 const { users, products, purchases} = require('../dataStore');
-
+const fs = require('fs');
 /**
  * Represents a user's shopping cart.
  */
@@ -43,16 +43,17 @@ class Cart {
 
         this.products.forEach((quantity, productId) => {
             const product = products.get(productId);
-
+            const imageBuffer = fs.readFileSync(product.imageUrl);
+            const imageBase64 = imageBuffer.toString('base64');
             if (product) {
                 const productInfo = {
                     id: productId,
                     name: product.name,
                     description: product.description,
                     price: product.price,
-                    quantity: quantity
-                };
-
+                    quantity: quantity,
+                    image: imageBase64
+                }; 
                 productsInfo.push(productInfo);
             }
         });

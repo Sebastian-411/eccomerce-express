@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
                 <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                  src="data:image/jpeg;base64,${product.image}"
                   class="img-fluid rounded-3" alt="Cotton T-shirt">
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
