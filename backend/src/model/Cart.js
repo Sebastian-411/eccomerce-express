@@ -59,7 +59,31 @@ class Cart {
 
         return productsInfo;
     }
+        /**
+     * Get information about a specific product in the cart.
+     * @param {number} productId - The ID of the product.
+     * @returns {Object|null} - An object containing information about the product, or null if the product is not in the cart.
+     */
+    getProductById(productId) {
+        if (!this.products.has(productId)) {
+            return null;
+        }
 
+        const quantity = this.products.get(productId);
+        const product = products.get(productId);
+
+        if (product) {
+            return {
+                id: productId,
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                quantity: quantity
+            };
+        }
+
+        return null;
+    }
     clear() {
         this.products = new Map();
     }
