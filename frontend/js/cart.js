@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h5 price="${product.price}" class="mb-0 price">$${product.price * product.quantity}</h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                <a href="#" class="text-danger trash"><i class="fas fa-trash fa-lg"></i></a>
               </div>
             </div>
           </div>
@@ -109,6 +109,29 @@ document.addEventListener('DOMContentLoaded', () => {
                   deleteModal.hide()
               });
             }
+          });
+        });
+        document.querySelectorAll('.trash').forEach(button => {
+          button.addEventListener('click', () => {
+            const cartItem = button.closest('.card-body');
+            const productId = cartItem.getAttribute("id-prod")
+            let quantityInput = cartItem.querySelector('.quantity-input');
+            let quantity = parseInt(quantityInput.value);
+              productToDelete = { productId, cartItem };
+              const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+              deleteModal.show();
+              document.getElementById('confirmDelete').addEventListener('click', () => {
+                if (productToDelete) {
+                  updateCart(productId, -quantity, quantity)
+                  deleteModal.hide()
+                  window.location.reload()
+                }
+              });
+              document.getElementById('dismiss').addEventListener('click', () => {
+                  quantityInput.value = quantity;
+                  deleteModal.hide()
+              });
+            
           });
         });
         const buttons = document.createElement('div');
