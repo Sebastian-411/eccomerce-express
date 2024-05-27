@@ -74,7 +74,6 @@ exports.updateCart = async (req, res) => {
         // Extract product ID and quantity from the request body
         const { productId, quantity } = req.body;
         const prod = user.cart.getProductById(productId)
-        console.log(prod)
         // Retrieve the product from the data store
         const product = products.get(productId);
         // Check if the product exists
@@ -161,7 +160,8 @@ exports.buyCart = async (req, res) => {
         const purchaseProducts = cartProducts.map(product => ({
             id: product.id,
             name: product.name,
-            quantity: product.quantity
+            quantity: product.quantity,
+            price: product.price
         }));
         const purchase = new Purchase(purchaseId, purchaseDate, totalPrice, purchaseProducts);
 
@@ -192,7 +192,7 @@ exports.buyCart = async (req, res) => {
         user.cart.clear();
 
         // Enviar una respuesta exitosa
-        res.status(200).send('Compra realizada exitosamente');
+        res.status(200).send(purchase);
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Error interno del servidor');

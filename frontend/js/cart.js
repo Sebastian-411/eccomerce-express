@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let quantityInput = cartItem.querySelector('.quantity-input');
             let quantity = parseInt(quantityInput.value);
             price.innerHTML = "$" + (parseInt(price.getAttribute("price")) * (parseInt(quantity)))
-            quantity +=1;
+            quantity += 1;
             updateCart(productId, 1, quantity);
           });
         });
@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
               });
               document.getElementById('dismiss').addEventListener('click', () => {
-                  quantityInput.value = 1;
-                  deleteModal.hide()
+                quantityInput.value = 1;
+                deleteModal.hide()
               });
             }
           });
@@ -117,31 +117,80 @@ document.addEventListener('DOMContentLoaded', () => {
             const productId = cartItem.getAttribute("id-prod")
             let quantityInput = cartItem.querySelector('.quantity-input');
             let quantity = parseInt(quantityInput.value);
-              productToDelete = { productId, cartItem };
-              const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-              deleteModal.show();
-              document.getElementById('confirmDelete').addEventListener('click', () => {
-                if (productToDelete) {
-                  updateCart(productId, -quantity, quantity)
-                  deleteModal.hide()
-                  window.location.reload()
-                }
-              });
-              document.getElementById('dismiss').addEventListener('click', () => {
-                  quantityInput.value = quantity;
-                  deleteModal.hide()
-              });
-            
+            productToDelete = { productId, cartItem };
+            const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+            deleteModal.show();
+            document.getElementById('confirmDelete').addEventListener('click', () => {
+              if (productToDelete) {
+                updateCart(productId, -quantity, quantity)
+                deleteModal.hide()
+                window.location.reload()
+              }
+            });
+            document.getElementById('dismiss').addEventListener('click', () => {
+              quantityInput.value = quantity;
+              deleteModal.hide()
+            });
+
           });
         });
         const buttons = document.createElement('div');
         buttons.className = 'card'
         buttons.innerHTML = `
           <div class="card-body">
-          <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+          <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-block btn-lg" id="purchase">Proceed to Pay</button>
           <a href="index.html"><button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-secondary btn-block btn-lg">Continue Shopping</button></a>
         </div>`
         productCardsContainer.appendChild(buttons);
+        const button = document.querySelector('#purchase')
+        button.addEventListener('click', async () => {
+          try {
+            const response = await fetch('http://localhost:3000/cart/purchase', {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer 887f2d243f55dabcfadb2050656ad69079af70672b2c6a45cced0491881652d0',
+                'Content-Type': 'application/json'
+              },
+            });
+
+            if (response.ok) {
+              const purchaseDetails = await response.json();
+              console.log(purchaseDetails)
+              const modalBody = document.querySelector('#purchaseModal .modal-body');
+              modalBody.innerHTML = `
+              <p>Compra realizada exitosamente.</p>
+              <p><strong>ID de Compra:</strong> ${purchaseDetails.id}</p>
+              <p><strong>Fecha:</strong> ${new Date(purchaseDetails.date).toLocaleString()}</p>
+              <p><strong>Total:</strong> $${purchaseDetails.totalPrice.toFixed(2)}</p>
+              <p><strong>Productos:</strong></p>
+              <ul class="list-group">
+                ${purchaseDetails.products.map(product => `
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                      <h6>${product.name}</h6>
+                      <small class="text-muted">Cantidad: ${product.quantity}</small>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">$${(parseInt(product.quantity) * parseInt(product.price)).toFixed(2)}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            `;
+              $('#purchaseModal').modal('show');
+
+              // Recargar la página cuando se acepte el modal
+              document.getElementById('modalAcceptButton').addEventListener('click', () => {
+                window.location.reload();
+              });
+
+            } else {
+              response.text().then(function (mensaje) {
+                alert(mensaje)
+              });
+            }
+          } catch (error) {
+            console.error('Error en la solicitud:', error);
+          }
+        });
       }
     })
     .catch(error => {
@@ -164,7 +213,7 @@ async function updateCart(productId, quantity, quantityInput) {
     });
 
     if (response.ok) {
-      
+
     } else {
       console.error('Error actualizando el carrito:', response.statusText);
     }
