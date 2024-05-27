@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
             password: password,
             rol: 'client'
         };
-
         try {
             const response = await fetch("http://localhost:3000/register", { 
                 method: "POST",
@@ -25,12 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
+                const data = await response.json(); // aqui esta data es el token tienes que guardarlo para usarlo despues del registro
                 if(data.success) {
                     alert(data.message);
                     window.location.href = "/login";
                 }else {
-                    alert("Error en el registro");
+                    alert(data);
                 }
             } else {
                 const errorData = await response.json();
