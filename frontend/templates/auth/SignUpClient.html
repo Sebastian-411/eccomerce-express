@@ -101,15 +101,15 @@
         d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z" />
     </symbol>
   </svg>
-    <div class="login-container">
+    <div class="register-container">
         <div>
           <img src="/frontend/images/main-logo.png" class="logo">
         </div>
         <h2>Registro de usuarios</h2>
         <p>¡Bienvenido!<br>Ingrese las credenciales para registrarse.</p>
-        <form id="login-form">
+        <form id="register-form" method="POST">
             <div>
-                <div class="username-input">
+                <div class="username-container">
                   <div class="lock-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                       class="size-6">
@@ -117,9 +117,9 @@
                         d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
                   </div>
-                  <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                  <input type="text" id="username-input" class="username-input" name="username" placeholder="Nombre de usuario" required>
                 </div>
-                <div class="password-input">
+                <div class="password-container">
                   <div class="username-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                       class="size-6">
@@ -127,10 +127,10 @@
                         d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                     </svg>
                   </div>
-                  <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                  <input type="password" id="password-input" class="password-input" name="password" placeholder="Contraseña" required>
                 </div>
             </div>
-            <button type="submit">Registrarse</button>
+            <button id="register-button" class="register-button" type="submit">Registrarse</button>
         </form>
     </div>
     <footer id="footer" class="overflow-hidden ">
@@ -176,5 +176,6 @@
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="/frontend/js/signup.js"></script>
 </body>
 </html>

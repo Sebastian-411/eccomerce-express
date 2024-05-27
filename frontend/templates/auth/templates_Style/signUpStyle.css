@@ -10,7 +10,7 @@ body {
   margin: 0;
 }
 
-.login-container {
+.register-container {
   background-color: var(--white-color);
   padding: 20px;
   border-radius: 10px;
@@ -21,8 +21,8 @@ body {
   align-items: center;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.register-container input[type="text"],
+.register-container input[type="password"] {
   width: 80%;
   padding: 10px;
   height: 20px;
@@ -34,7 +34,7 @@ body {
   background-color: var(--light-color);
 }
 
-.login-container button {
+.register-container button {
   width: 70%;
   padding: 15px;
   background-color: black;
@@ -43,10 +43,10 @@ body {
   color: #fff;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
-.login-container button:hover {
+.register-container button:hover {
   background-color: var(--accent-color);
 }
 
@@ -87,12 +87,12 @@ body {
   background-color: var(--light-gray-color)
 }
 
-.username-input {
+.username-container {
   display: flex;
   flex-direction: row;
 }
 
-.password-input {
+.password-container {
   display: flex;
   flex-direction: row;
 }
