@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
 
                 <input id="form1" min="0" name="quantity" value="${product.quantity}" type="number"
-                  class="form-control form-control-sm quantity-input" />
+                  class="form-control form-control-sm quantity-input" disabled />
 
                 <button  data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2 increase-quantity"
                   onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus increase-quantity"></i>
+                  <i class="fas fa-plus"></i>
                 </button>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let quantityInput = cartItem.querySelector('.quantity-input');
             let quantity = parseInt(quantityInput.value);
             price.innerHTML = "$" + (parseInt(price.getAttribute("price")) * (parseInt(quantity)))
-            quantity += 1;
+            quantity +=1;
             updateCart(productId, 1, quantity);
           });
         });
@@ -141,7 +141,7 @@ async function updateCart(productId, quantity, quantityInput) {
     });
 
     if (response.ok) {
-      quantityInput.value = quantity;
+      
     } else {
       console.error('Error actualizando el carrito:', response.statusText);
     }
