@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const cartButtons = document.querySelectorAll('.add-to-cart');
         cartButtons.forEach(button => {
-          productId = button.getAttribute('data-product-id');
           button.addEventListener('click', async (event) => {
+            productId = button.getAttribute('data-product-id');
             event.preventDefault();
             const myModal = new bootstrap.Modal(document.getElementById("myModal"));
             myModal.show();

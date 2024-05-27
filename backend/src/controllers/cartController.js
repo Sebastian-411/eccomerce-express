@@ -73,24 +73,27 @@ exports.updateCart = async (req, res) => {
 
         // Extract product ID and quantity from the request body
         const { productId, quantity } = req.body;
-
-        // Validate product ID and quantity
-        if (!productId || quantity < 0) {
-            return res.status(400).send('Se debe proporcionar el ID del producto y una cantidad válida');
-        }
-
+        const prod = user.cart.getProductById(productId)
+        console.log(prod)
         // Retrieve the product from the data store
         const product = products.get(productId);
-
-
         // Check if the product exists
         if (!product) {
             return res.status(404).send('Producto no encontrado');
         }
 
 
+        // Validate product ID and quantity
+        if(prod==null){
+            if (!productId || quantity < 0) {
+                return res.status(400).send('Se debe proporcionar el ID del producto y una cantidad válida');
+            }    
+        }
+
+
+
+        
         // Update the user's cart with the specified product and quantity
-        const prod = user.cart.getProductById(productId)
         if(prod!=null){
             const currentQuantityInCart = Number(prod.quantity);
             const addedQuantity = Number(quantity);

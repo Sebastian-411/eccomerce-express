@@ -184,17 +184,10 @@
 
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-            <div>
-              <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                    class="fas fa-angle-down mt-1"></i></a></p>
-            </div>
+
           </div>
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-            <div>
-              <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                    class="fas fa-angle-down mt-1"></i></a></p>
-            </div>
           </div>
           
           <!--Aqui se insertaran los productos del carrito-->
@@ -205,6 +198,23 @@
         </div>
       </div>
     </div>
+    <div id="deleteModal" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Eliminar Producto</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <p>¿Está seguro de que desea eliminar este producto del carrito?</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="dismiss">Cancelar</button>
+                  <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+              </div>
+          </div>
+      </div>
+  </div>
   </section>
 
   <section id="company-services" class="padding-large">
