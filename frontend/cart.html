@@ -167,6 +167,13 @@
                         </svg>
                       </a>
                     </li>
+                    <li>
+                      <a href="historial.html">
+                        <svg class="cart">
+                          <i class="fa fa-history"></i>
+                        </svg>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -176,7 +183,7 @@
       </div>
     </nav>
   </header>
-  
+
   <section class="h-100" style="background-color: #eee;">
     <div class="container h-100 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -184,24 +191,54 @@
 
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-            <div>
-              <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                    class="fas fa-angle-down mt-1"></i></a></p>
-            </div>
+
           </div>
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-            <div>
-              <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                    class="fas fa-angle-down mt-1"></i></a></p>
-            </div>
           </div>
-          
+
           <!--Aqui se insertaran los productos del carrito-->
 
-        
-  
-  
+
+
+
+        </div>
+      </div>
+    </div>
+    <!--Modal para verificar eliminación-->
+    <div id="deleteModal" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Eliminar Producto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro de que desea eliminar este producto del carrito?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="dismiss">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal para mostrar compra-->
+    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="purchaseModalLabel">Detalle de la Compra</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Aquí se insertará el detalle de la compra -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="modalAcceptButton">Aceptar</button>
+          </div>
         </div>
       </div>
     </div>
