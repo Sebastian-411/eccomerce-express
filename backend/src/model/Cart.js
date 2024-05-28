@@ -1,5 +1,5 @@
 const { users, products, purchases} = require('../dataStore');
-
+const fs = require('fs');
 /**
  * Represents a user's shopping cart.
  */
@@ -43,23 +43,48 @@ class Cart {
 
         this.products.forEach((quantity, productId) => {
             const product = products.get(productId);
-
+            const imageBuffer = fs.readFileSync(product.imageUrl);
+            const imageBase64 = imageBuffer.toString('base64');
             if (product) {
                 const productInfo = {
                     id: productId,
                     name: product.name,
                     description: product.description,
                     price: product.price,
-                    quantity: quantity
-                };
-
+                    quantity: quantity,
+                    image: imageBase64
+                }; 
                 productsInfo.push(productInfo);
             }
         });
 
         return productsInfo;
     }
+        /**
+     * Get information about a specific product in the cart.
+     * @param {number} productId - The ID of the product.
+     * @returns {Object|null} - An object containing information about the product, or null if the product is not in the cart.
+     */
+    getProductById(productId) {
+        if (!this.products.has(productId)) {
+            return null;
+        }
 
+        const quantity = this.products.get(productId);
+        const product = products.get(productId);
+
+        if (product) {
+            return {
+                id: productId,
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                quantity: quantity
+            };
+        }
+
+        return null;
+    }
     clear() {
         this.products = new Map();
     }

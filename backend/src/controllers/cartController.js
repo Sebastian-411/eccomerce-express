@@ -73,23 +73,33 @@ exports.updateCart = async (req, res) => {
 
         // Extract product ID and quantity from the request body
         const { productId, quantity } = req.body;
-
-        // Validate product ID and quantity
-        if (!productId || quantity < 0) {
-            return res.status(400).send('Se debe proporcionar el ID del producto y una cantidad válida');
-        }
-
+        const prod = user.cart.getProductById(productId)
         // Retrieve the product from the data store
         const product = products.get(productId);
-
         // Check if the product exists
         if (!product) {
             return res.status(404).send('Producto no encontrado');
         }
 
-        // Update the user's cart with the specified product and quantity
-        user.cart.updateProduct(productId, quantity);
 
+        // Validate product ID and quantity
+        if(prod==null){
+            if (!productId || quantity < 0) {
+                return res.status(400).send('Se debe proporcionar el ID del producto y una cantidad válida');
+            }    
+        }
+
+
+
+        
+        // Update the user's cart with the specified product and quantity
+        if(prod!=null){
+            const currentQuantityInCart = Number(prod.quantity);
+            const addedQuantity = Number(quantity);
+            user.cart.updateProduct(productId, currentQuantityInCart+addedQuantity);
+        }else{
+            user.cart.updateProduct(productId, quantity);
+        }
         // Send a success response
         res.status(201).send('Producto actualizado en el carrito exitosamente');
     } catch (error) {
@@ -150,7 +160,8 @@ exports.buyCart = async (req, res) => {
         const purchaseProducts = cartProducts.map(product => ({
             id: product.id,
             name: product.name,
-            quantity: product.quantity
+            quantity: product.quantity,
+            price: product.price
         }));
         const purchase = new Purchase(purchaseId, purchaseDate, totalPrice, purchaseProducts);
 
@@ -181,7 +192,7 @@ exports.buyCart = async (req, res) => {
         user.cart.clear();
 
         // Enviar una respuesta exitosa
-        res.status(200).send('Compra realizada exitosamente');
+        res.status(200).send(purchase);
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Error interno del servidor');
