@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const data = await response.json(); // aqui esta data es el token tienes que guardarlo para usarlo despues del registro
                 if(data.success) {
                     alert(data.message);
-                    window.location.href = "/login";
+                    window.location.href = "../../templates/auth/login_client.html";
                 }else {
                     alert(data);
                 }

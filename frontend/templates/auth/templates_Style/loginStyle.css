@@ -87,12 +87,12 @@ body {
   background-color: var(--light-gray-color)
 }
 
-.username-input {
+.username-container {
   display: flex;
   flex-direction: row;
 }
 
-.password-input {
+.password-container {
   display: flex;
   flex-direction: row;
 }

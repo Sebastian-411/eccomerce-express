@@ -29,7 +29,6 @@ exports.register = (req, res) => {
         // Create a new user and add it to the data store
         const newUser = new User(username, password, rol);
         users.set(newUser.token, newUser);
-        console.log("Holaaaaaa")
         return res.status(201).send({ success:true, message: 'Registro exitoso', token: newUser.token });
     }
 };
