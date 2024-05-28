@@ -20,17 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(user)
       });
 
-      if (response.ok) {
-        const data = await response.json(); // aqui esta data es el token tienes que guardarlo para usarlo despues del registro
-        if (data.success) {
-          alert(data.message);
+      const data = await response.json();
+      const messageContainer = document.getElementById('message-container');
+      messageContainer.innerHTML = '';
+      if(data.success) {
+        localStorage.setItem('token', data.token);
+        setTimeout(() => {
           window.location.href = "../../index.html";
-        } else {
-          alert(data.message);
-        }
-      } else {
-        const errorData = await response.json();
-        alert(`Error en el login: ${errorData.error}`);
+        }, 2000);
+      }else {
+        const messageElement = document.createElement('p');
+        messageElement.className = 'alert-danger';
+        messageElement.innerText = data.message;
+        messageContainer.appendChild(messageElement);
       }
     } catch (error) {
       console.error("Error:", error);

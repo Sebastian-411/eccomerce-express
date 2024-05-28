@@ -10,19 +10,20 @@ body {
   margin: 0;
 }
 
-.register-container {
+.login-container {
   background-color: var(--white-color);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: 65%;
+  height: 70%;
   width: 300px;
   text-align: center;
   align-items: center;
+  margin-top: 10px;
 }
 
-.register-container input[type="text"],
-.register-container input[type="password"] {
+.login-container input[type="text"],
+.login-container input[type="password"] {
   width: 80%;
   padding: 10px;
   height: 20px;
@@ -34,7 +35,7 @@ body {
   background-color: var(--light-color);
 }
 
-.register-container button {
+.login-container button {
   width: 70%;
   padding: 15px;
   background-color: black;
@@ -43,10 +44,10 @@ body {
   color: #fff;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 25px;
+  margin-top: 5px;
 }
 
-.register-container button:hover {
+.login-container button:hover {
   background-color: var(--accent-color);
 }
 
@@ -139,6 +140,18 @@ ul {
 
 h2 {
   color: var(--gray-color-800);
+}
+
+.message-container {
+  padding-top: 2px;
+}
+
+.alert-danger {
+  color: red;
+}
+
+.register-redirection {
+    margin-top: 30px;
 }
 
 .facebook:hover {

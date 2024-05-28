@@ -21,10 +21,10 @@ exports.register = (req, res) => {
     const existingUser = Array.from(users.values()).find(user => user.user === username);
 
     if (existingUser) {
-        return res.status(400).send({ 'error': 'El nombre de usuario ya está en uso' });
+        return res.status(400).send({ success:false, message: 'El nombre de usuario ya está en uso' });
     } else if (rol !== 'admin' && rol !== 'client' && rol !== undefined) {
         // Check if the role is valid
-        return res.status(400).send({ 'error': 'Rol no válido' });
+        return res.status(400).send({ success:false, message: 'Rol no válido' });
     } else {
         // Create a new user and add it to the data store
         const newUser = new User(username, password, rol);
@@ -48,10 +48,10 @@ exports.login = (req, res) => {
 
     if (user) {
         // Return the user's token if login is successful
-        return res.status(200).send({ token: user.token });
+        return res.status(200).send({ success:true, token: user.token });
     } else {
         // Return an error message if login fails
-        return res.status(401).send('Credenciales inválidas');
+        return res.status(401).send({ success:false, message: 'Credenciales no válidas'});
     }
 };
 

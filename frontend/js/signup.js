@@ -1,5 +1,3 @@
-// const { error } = require("console");
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("register-form");
 
@@ -22,18 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 body: JSON.stringify(user)
             });
-
-            if (response.ok) {
-                const data = await response.json(); // aqui esta data es el token tienes que guardarlo para usarlo despues del registro
-                if(data.success) {
-                    alert(data.message);
+            
+            const data = await response.json();
+            const messageContainer = document.getElementById('message-container');
+            messageContainer.innerHTML = '';
+            const messageElement = document.createElement('p');
+            messageElement.className = data.success ? 'alert-success' : 'alert-danger';
+            messageElement.innerText = data.message;
+            messageContainer.appendChild(messageElement);
+            if (data.success) {
+                setTimeout(() => {
                     window.location.href = "../../templates/auth/login_client.html";
-                }else {
-                    alert(data);
-                }
-            } else {
-                const errorData = await response.json();
-                alert(`Error en el registro: ${errorData.error}`);
+                }, 2000);
             }
         } catch (error) {
             console.error("Error:", error);
@@ -41,35 +39,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-
-// document.getElementById('register-button').addEventListener('click', function(){
-//     const username = document.getElementById('username-input').value;
-//     const password = document.getElementById('password-input').value;
-
-//     const user = {
-//         username: username,
-//         password: password,
-//         rol: 'client'
-//     };
-
-//     fetch('http://localhost:3000/register', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(user)
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         if (data.success) {
-//             alert('Registro exitoso');
-//             window.location.href = '/login';
-//         } else {
-//             throw new Error('Error al hacer el registro');
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error:', error);
-//         alert('Ocurrió un error durante el registro. Por favor, intenta nuevamente.');
-//     });
-// })
+   
