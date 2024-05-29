@@ -155,7 +155,8 @@ exports.buyCart = async (req, res) => {
         }, 0);
 
         // Create a new purchase instance
-        const purchaseId = user.purchases.length; // ID es la longitud de las compras
+        const purchaseId = purchases.size; // ID es la longitud de las compras
+        console.log(purchaseId)
         const purchaseDate = new Date();
         const purchaseProducts = cartProducts.map(product => ({
             id: product.id,
@@ -187,6 +188,7 @@ exports.buyCart = async (req, res) => {
 
         // Agregar la compra al arreglo de compras del usuario
         user.addPurchase(purchaseId, purchase);
+        purchases.set(purchaseId, purchase);
 
         // Vaciar el carrito del usuario
         user.cart.clear();

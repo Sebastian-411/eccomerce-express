@@ -18,11 +18,11 @@ class User {
         this.rol = rol;
         this.cart = new Cart();
         this.token = this.generateToken();
-        this.purchases = [];
+        this.purchases = new Map();
     }
 
-    addPurchase(purchase) {
-        this.purchases.push(purchase);
+    addPurchase(purchaseId, purchase) {
+        this.purchases.set(purchaseId, purchase);
     }
 
     

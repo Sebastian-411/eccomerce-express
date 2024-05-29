@@ -22,28 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
           const productCard = document.createElement('div');
           productCard.className = 'col-lg-3 col-md-6 pb-3 pt-5';
           productCard.innerHTML = `
-              <div class="product-card position-relative">
-                <div class="image-holder">
-                <img src="data:image/jpeg;base64,${product.image}" alt="product-item" class="img-fluid">
-                </div>
-                <div class="cart-concern position-absolute">
-                  <div class="cart-button d-flex">
-                    <a href="#" class="btn btn-medium btn-black add-to-cart" data-product-id="${product.id}">Add to Cart<svg class="cart-outline" >
-                        <use xlink:href="#cart-outline"></use>
-                      </svg></a>
+                <div class="product-card position-relative">
+                  <div class="image-holder">
+                  <img src="data:image/jpeg;base64,${product.image}" alt="product-item" class="img-fluid">
                   </div>
-                </div>
+                  <div class="cart-concern position-absolute">
+                    <div class="cart-button d-flex">
+                      <button onclick="updateId(${product.id})" type="button" class="btn btn-medium btn-black edit-product" data-bs-toggle="modal" data-bs-target="#editProductModal" data-product-id="${product.id}">Editar Producto</button>
+                    </div>
+                  </div>
+                
+  
+              
+                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                    <h3 class="card-title text-uppercase">
+                      <a href="#">${product.name}</a>
+                    </h3>
+                    <span class="item-price text-primary">$${product.price}</span>
+                  </div>
 
-            
-                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                  <h3 class="card-title text-uppercase">
-                    <a href="#">${product.name}</a>
-                  </h3>
-                  <span class="item-price text-primary">$${product.price}</span>
+
+                  <p>${product.description}</p>
+
+                  <div class="card-detail d-flex justify-content-between align-items-baseline">
+                  <h5 class="">
+                    <p>Cantidad: <span class="item-price text-primary">${product.quantity}</span>
+                    </p>
+                  </h5>
                 </div>
-                <p>${product.description}</p>
-              </div>
-            `;
+                </div>
+              `;
           productCardsContainer.appendChild(productCard);
         });
         const cartButtons = document.querySelectorAll('.add-to-cart');
@@ -66,17 +74,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (productId) {
               const id = parseInt(productId);
               try {
+                const token = localStorage.getItem('token');
                 const response = await fetch('http://localhost:3000/cart', {
                   method: 'POST',
                   headers: {
-                    'Authorization': 'Bearer 887f2d243f55dabcfadb2050656ad69079af70672b2c6a45cced0491881652d0',
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': "application/json" // Suponiendo que el token está almacenado en localStorage
                   },
                   body: JSON.stringify({ productId: id, quantity: quantity })
                 });
                 if (response.ok) {
                   alert('Producto añadido al carrito');
-                }else{
+                } else {
                   alert(error)
                 }
               } catch (error) {
@@ -95,10 +104,18 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => {
       console.error('Error:', error);
       console.log(error.name)
-      
+
 
       // Manejar errores aquí
     });
 
 
 });
+
+
+
+function updateId(id){
+  const element = document.getElementById('productId');
+  element.value = id;
+  console.log(element.value)
+}

@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   const productCardsContainer = document.getElementById('productCardsCartContainer');
 
+  const token = localStorage.getItem('token');
 
   // Hacer la solicitud a localhost:3000/cart
   fetch('http://localhost:3000/cart', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 887f2d243f55dabcfadb2050656ad69079af70672b2c6a45cced0491881652d0', // Suponiendo que el token está almacenado en localStorage
+      'Authorization': `Bearer ${token}`, 
     },
   })
     .then(response => {
@@ -143,12 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>`
         productCardsContainer.appendChild(buttons);
         const button = document.querySelector('#purchase')
+        const token = localStorage.getItem('token');
         button.addEventListener('click', async () => {
           try {
             const response = await fetch('http://localhost:3000/cart/purchase', {
               method: 'POST',
               headers: {
-                'Authorization': 'Bearer 887f2d243f55dabcfadb2050656ad69079af70672b2c6a45cced0491881652d0',
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
               },
             });

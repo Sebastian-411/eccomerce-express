@@ -1,4 +1,4 @@
-const { users } = require('../dataStore');
+const { users, products, purchases } = require('../dataStore');
 const Purchase = require('../model/Purchase');
 
 /**
@@ -69,11 +69,33 @@ exports.getPurchases = async (req, res) => {
         const userData = await whoamiResponse.json();
         const user = users.get(userData.token);
 
-        // Get all purchases
-        const purchases = user.purchases;
+        if(user.rol == "admin"){
+            // Convertir el Map de compras a un array de entradas y mapear para formatear como objetos JSON
+            const purchasesJSON = Array.from(purchases).map(([key, value]) => {
+                return {
+                    id: value.id,
+                    date: value.date,
+                    totalPrice: value.totalPrice,
+                    products: value.products
+                };
+            });
 
-        // Send all purchases as the response
-        res.status(200).json(purchases);
+            // Send all purchases as the response
+            res.status(200).json(purchasesJSON);
+        } else if(user.rol == "client"){
+            
+            const purchasesJSON = Array.from(user.purchases).map(([key, value]) => {
+                return {
+                    id: value.id,
+                    date: value.date,
+                    totalPrice: value.totalPrice,
+                    products: value.products
+                };
+            });
+
+            // Send all purchases as the response
+            res.status(200).json(purchasesJSON);
+        }
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Error interno del servidor');
