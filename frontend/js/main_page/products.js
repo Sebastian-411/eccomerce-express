@@ -21,29 +21,35 @@ document.addEventListener('DOMContentLoaded', () => {
         products.forEach(product => {
           const productCard = document.createElement('div');
           productCard.className = 'col-lg-3 col-md-6 pb-3 pt-5';
+          let stockMessage = '';
+          if (product.quantity === 0) {
+            stockMessage = '<p class="text-danger">Sin stock</p>';
+          }
+          
           productCard.innerHTML = `
-              <div class="product-card position-relative">
-                <div class="image-holder">
+            <div class="product-card position-relative">
+              <div class="image-holder">
                 <img src="data:image/jpeg;base64,${product.image}" alt="product-item" class="img-fluid">
-                </div>
-                <div class="cart-concern position-absolute">
-                  <div class="cart-button d-flex">
-                    <a href="#" class="btn btn-medium btn-black add-to-cart" data-product-id="${product.id}">Add to Cart<svg class="cart-outline" >
-                        <use xlink:href="#cart-outline"></use>
-                      </svg></a>
-                  </div>
-                </div>
-
-            
-                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                  <h3 class="card-title text-uppercase">
-                    <a href="#">${product.name}</a>
-                  </h3>
-                  <span class="item-price text-primary">$${product.price}</span>
-                </div>
-                <p>${product.description}</p>
               </div>
-            `;
+              <div class="cart-concern position-absolute">
+                <div class="cart-button d-flex">
+                  <a href="#" class="btn btn-medium btn-black add-to-cart" data-product-id="${product.id}" ${product.quantity === 0 ? 'style="display:none;"' : ''}>Add to Cart
+                    <svg class="cart-outline">
+                      <use xlink:href="#cart-outline"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                <h3 class="card-title text-uppercase">
+                  <a href="#">${product.name}</a>
+                </h3>
+                <span class="item-price text-primary">$${product.price}</span>
+              </div>
+              <p>${product.description}</p>
+              ${stockMessage}
+            </div>
+          `;
           productCardsContainer.appendChild(productCard);
         });
         const cartButtons = document.querySelectorAll('.add-to-cart');
