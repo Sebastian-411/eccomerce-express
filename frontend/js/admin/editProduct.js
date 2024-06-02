@@ -29,7 +29,7 @@ editProductForm.addEventListener('submit', async function (event) {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/admin/products`, {
+        const response = await fetch(`http://localhost:3000/products`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -39,8 +39,8 @@ editProductForm.addEventListener('submit', async function (event) {
 
         if (response.ok) {
             alert('Producto actualizado exitosamente.');
-            $('#editProductModal').modal('hide'); // Cerrar el modal después de actualizar
-            // Puedes agregar más acciones aquí, como volver a cargar la lista de productos.
+            $('#editProductModal').modal('hide');
+            location.reload();
         } else {
             const errorMessage = await response.text();
             alert('Error al actualizar el producto: ' + errorMessage);
