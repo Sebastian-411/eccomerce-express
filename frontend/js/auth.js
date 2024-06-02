@@ -26,7 +26,7 @@ async function authToken(token) {
         const basePath = window.location.pathname.includes('admin') ? '../' : '';
         if (userInfo.rol === "admin" && !window.location.pathname.includes('admin/index.html')) {
             window.location.replace(`${basePath}admin/index.html`);
-        } else if (userInfo.rol === "client" && !window.location.pathname.includes('index.html')) {
+        } else if (userInfo.rol === "client" && (!window.location.pathname.includes('index.html') && !window.location.pathname.includes('cart.html'))) {
             window.location.replace(`${basePath}index.html`);
         }
     } else {

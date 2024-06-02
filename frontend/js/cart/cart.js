@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, 
+      'Authorization': `Bearer ${token}`,
     },
   })
     .then(response => {
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
 
-        
+
         const buttons = document.createElement('div');
         buttons.className = 'card'
         buttons.innerHTML = `
@@ -179,6 +179,40 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
             `;
               $('#purchaseModal').modal('show');
+
+              let receiptHTML = `
+              <h1>Recibo de compra</h1>
+              <p><strong>ID de Compra:</strong> ${purchaseDetails.id}</p>
+              <p><strong>Fecha:</strong> ${new Date(purchaseDetails.date).toLocaleString()}</p>
+              <p><strong>Total:</strong> $${purchaseDetails.totalPrice.toFixed(2)}</p>
+              <p><strong>Productos:</strong></p>
+              <ul>
+                ${purchaseDetails.products.map(product => `
+                  <li>${product.name} - Cantidad: ${product.quantity} - Precio: $${product.price}</li>
+                `).join('')}
+              </ul>
+            `;
+
+              const receiptContainer = document.createElement('div');
+              receiptContainer.innerHTML = receiptHTML;
+
+              // Convertir el contenido HTML en un Blob
+              const blob = new Blob([receiptContainer.outerHTML], { type: 'application/pdf' });
+
+              // Crear un objeto URL para el Blob
+              const url = URL.createObjectURL(blob);
+
+              // Crear un enlace y simular un clic para descargar el archivo
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'recibo_compra.pdf';
+              a.style.display = 'none';
+              document.body.appendChild(a);
+              a.click();
+
+              // Limpiar el objeto URL y eliminar el enlace
+              URL.revokeObjectURL(url);
+              document.body.removeChild(a);
 
               // Recargar la página cuando se acepte el modal
               document.getElementById('modalAcceptButton').addEventListener('click', () => {
