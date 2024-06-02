@@ -30,7 +30,7 @@ async function authToken(token) {
             window.location.replace(`${basePath}index.html`);
         }
     } else {
-        alert('Unexpected error');
+        redirectToLogin();
     }
 }
 
