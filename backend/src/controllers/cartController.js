@@ -156,7 +156,6 @@ exports.buyCart = async (req, res) => {
 
         // Create a new purchase instance
         const purchaseId = purchases.size; // ID es la longitud de las compras
-        console.log(purchaseId)
         const purchaseDate = new Date();
         const purchaseProducts = cartProducts.map(product => ({
             id: product.id,
