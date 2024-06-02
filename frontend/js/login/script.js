@@ -35,7 +35,7 @@ document.getElementById('loginButton').addEventListener('click', async () => {
                 alert('Unexpected response format');
             }
         } else {
-            alert(result || 'Login failed');
+            alert('Login failed');
         }
     } catch (error) {
         // Hide loading spinner
