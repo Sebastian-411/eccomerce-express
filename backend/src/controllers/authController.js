@@ -51,7 +51,7 @@ exports.login = (req, res) => {
         return res.status(200).send({ token: user.token });
     } else {
         // Return an error message if login fails
-        return res.status(401).send('Credenciales inválidas');
+        return res.status(401).send({'error': 'Credenciales inválidas'});
     }
 };
 
@@ -71,6 +71,6 @@ exports.whoami = (req, res) => {
         return res.status(200).send(user);
     } else {
         // Return an error message if the token is invalid
-        return res.status(401).send('Token inválido');
+        return res.status(401).send({ 'error' : 'Token inválido'});
     }
 };

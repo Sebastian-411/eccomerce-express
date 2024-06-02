@@ -37,7 +37,7 @@ router.get('/products', productController.getProducts);
  * @param {string} path - Express route path.
  * @param {callback} middleware - Express middleware.
  */
-router.put('/products', productController.updateProduct);
+router.put('/products', productController.upload.single('image'), productController.updateProduct);
 
 /**
  * Route for deleting a product.
@@ -49,5 +49,9 @@ router.put('/products', productController.updateProduct);
  * @param {callback} middleware - Express middleware.
  */
 router.delete('/products', productController.deleteProduct);
+
+
+
+router.get('/product/:id', productController.getProductById);
 
 module.exports = router;

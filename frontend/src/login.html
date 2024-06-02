@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DeepStore</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="Juan Sebastian Diaz">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <!-- script
+    ================================================== -->
+    <script src="../js/modernizr.js"></script>
+    <script src="https://kit.fontawesome.com/c1e312c531.js" crossorigin="anonymous"></script>
+
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            display: none;
+        }
+        .loading-spinner {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+
+<body class="vh-100" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%"
+    data-bs-smooth-scroll="true" tabindex="0">
+
+    <div class="loading-container" id="loadingSpinner">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+                <form id="loginForm">
+                    <!-- Username input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="text" id="username" class="form-control form-control-lg"
+                            placeholder="Enter a valid username" />
+                        <label class="form-label" for="username">Username</label>
+                    </div>
+            
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-3">
+                        <input type="password" id="password" class="form-control form-control-lg"
+                            placeholder="Enter password" />
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+            
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="button" id="loginButton" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.html"
+                                class="link-danger">Register</a></p>
+                    </div>
+                </form>
+            
+            </div>
+        </div>
+    </div>
+    <div id="footer-bottom">
+        <div class="container">
+          <div class="row d-flex flex-wrap justify-content-between">
+            <div class="col-md-4 col-sm-6">
+              <div class="Shipping d-flex">
+                <p>We ship with:</p>
+                <div class="card-wrap ps-2">
+                  <img src="../images/dhl.png" alt="dhl" width="60" height="24">
+                  <img src="../images/servientrega.png" alt="servientrega" width="40" height="30">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="payment-method d-flex">
+                <p>Payment options:</p>
+                <div class="card-wrap ps-2">
+                  <img src="../images/visa.jpg" alt="visa">
+                  <img src="../images/mastercard.jpg" alt="mastercard">
+                  <img src="../images/paypal.jpg" alt="paypal">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="copyright">
+                <p>© Copyright 2023 DeepStore.</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script type="text/javascript" src="../js/login/script.js"></script>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/plugins.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+
+</html>
