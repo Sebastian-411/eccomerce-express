@@ -70,5 +70,5 @@ const registerUser = async () => {
 // Starts the server and listens for requests on the specified port
 app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
-    await registerUser(); 
+    temp = await registerUser(); 
 });
