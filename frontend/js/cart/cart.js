@@ -135,6 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
           });
         });
+
+        
         const buttons = document.createElement('div');
         buttons.className = 'card'
         buttons.innerHTML = `
