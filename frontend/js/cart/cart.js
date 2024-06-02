@@ -193,28 +193,21 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
             `;
 
-              const receiptContainer = document.createElement('div');
-              receiptContainer.innerHTML = receiptHTML;
+              // Abrir una nueva ventana y establecer su contenido como el HTML del recibo
+              const receiptWindow = window.open('');
+              receiptWindow.document.open();
+              receiptWindow.document.write(receiptHTML);
+              receiptWindow.document.close();
+              
+              // Esperar un breve momento para asegurarse de que el contenido se ha cargado completamente
+              setTimeout(() => {
 
-              // Convertir el contenido HTML en un Blob
-              const blob = new Blob([receiptContainer.outerHTML], { type: 'application/pdf' });
+                receiptWindow.print();
 
-              // Crear un objeto URL para el Blob
-              const url = URL.createObjectURL(blob);
+                receiptWindow.close();
+              }, 1000); // Ajusta el tiempo de espera según sea necesario
 
-              // Crear un enlace y simular un clic para descargar el archivo
-              const a = document.createElement('a');
-              a.href = url;
-              a.download = 'recibo_compra.pdf';
-              a.style.display = 'none';
-              document.body.appendChild(a);
-              a.click();
 
-              // Limpiar el objeto URL y eliminar el enlace
-              URL.revokeObjectURL(url);
-              document.body.removeChild(a);
-
-              // Recargar la página cuando se acepte el modal
               document.getElementById('modalAcceptButton').addEventListener('click', () => {
                 window.location.reload();
               });
