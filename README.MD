@@ -86,7 +86,3 @@ git clone https://github.com/Sebastian-411/eccomerce-express.git
     ```bash
     start src/index.html
     ```
-
----
-
-Siguiendo estos pasos, podrás ejecutar nuestra aplicación en Linux o Windows. Si encuentras algún problema, no dudes en contactarnos para obtener asistencia.
