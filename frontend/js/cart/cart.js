@@ -25,26 +25,27 @@ document.addEventListener('DOMContentLoaded',async () => {
         noProductsMessage.style.textAlign = 'center';
         productCardsContainer.appendChild(noProductsMessage);
       } else {
-        // Construir las tarjetas de producto
-        products.forEach(product => {
+
+        const cards = document.createElement('div');
+
+        products.forEach(async product => {
           const globalProduct = await getProductById(product.id);
           let stockMessage = '';
-          let imageClass = '';
-          if (globalProduct.quantity === 0) {
-            stockMessage = '<p class="text-danger">Sin stock</p>';
-            imageClass = 'out-of-stock';
+          let classdiv = '';
+          if (globalProduct.quantity == 0) {
+            stockMessage = '<p class="bg-danger text-center" style="border-radius: 5px; padding: 5px;"><strong class="text-white">¡Sin stock disponible!</strong></p>';
           }
 
           const productCard = document.createElement('div');
           productCard.className = 'card rounded-3 mb-4';
           productCard.innerHTML = `
             <div class="card-body p-4" id-prod="${product.id}">
-            <div class="row d-flex justify-content-between align-items-center">
+            <div class="row d-flex justify-content-between align-items-center ">
               <div class="col-md-2 col-lg-2 col-xl-2">
-              <img src="data:image/jpeg;base64,${globalProduct.image}" class="img-fluid rounded-3 ${imageClass}" alt="${globalProduct.name}">
-              ${stockMessage}
+              <img src="data:image/jpeg;base64,${globalProduct.image}" class="img-fluid rounded-3 " alt="${globalProduct.name}">
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
+                ${stockMessage}
                 <p class="lead fw-normal mb-2">${product.name}</p>
                 <p><span class="text-muted">${product.description}</span></p>
               </div>
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded',async () => {
             </div>
           </div>
             `;
-          productCardsContainer.appendChild(productCard);
+          cards.appendChild(productCard);
 
         });
         document.querySelectorAll('.increase-quantity').forEach(button => {
@@ -142,13 +143,15 @@ document.addEventListener('DOMContentLoaded',async () => {
         });
 
 
+        
         const buttons = document.createElement('div');
-        buttons.className = 'card'
+        buttons.className = 'card mb-4'
         buttons.innerHTML = `
           <div class="card-body">
           <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-block btn-lg" id="purchase">Proceed to Pay</button>
           <a href="index.html"><button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-secondary btn-block btn-lg">Continue Shopping</button></a>
         </div>`
+        productCardsContainer.appendChild(cards);
         productCardsContainer.appendChild(buttons);
         const button = document.querySelector('#purchase')
         const token = localStorage.getItem('token');
@@ -259,7 +262,7 @@ async function updateCart(productId, quantity, quantityInput) {
 }
 
 async function getProductById(productId) {
-  const response = await fetch(`/product/${productId}`);
+  const response = await fetch(`http://localhost:3000/product/${productId}`);
   if (!response.ok) {
     throw new Error('Producto no encontrado');
   }
