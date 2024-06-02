@@ -16,7 +16,9 @@
   position: fixed;
   background: #0b0b0b;
   opacity: 0.8; }
-
+.out-of-stock {
+  filter: brightness(50%);
+}
 .mfp-wrap {
   top: 0;
   left: 0;

@@ -1,5 +1,5 @@
 const token = localStorage.getItem('token');
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded',async () => {
   const productCardsContainer = document.getElementById('productCardsCartContainer');
 
   // Hacer la solicitud a localhost:3000/cart
@@ -27,6 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         // Construir las tarjetas de producto
         products.forEach(product => {
+          const globalProduct = await getProductById(product.id);
+          let stockMessage = '';
+          let imageClass = '';
+          if (globalProduct.quantity === 0) {
+            stockMessage = '<p class="text-danger">Sin stock</p>';
+            imageClass = 'out-of-stock';
+          }
 
           const productCard = document.createElement('div');
           productCard.className = 'card rounded-3 mb-4';
@@ -34,9 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card-body p-4" id-prod="${product.id}">
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="data:image/jpeg;base64,${product.image}"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
+              <img src="data:image/jpeg;base64,${globalProduct.image}" class="img-fluid rounded-3 ${imageClass}" alt="${globalProduct.name}">
+              ${stockMessage}
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
                 <p class="lead fw-normal mb-2">${product.name}</p>
@@ -257,6 +263,15 @@ async function updateCart(productId, quantity, quantityInput) {
   } catch (error) {
     console.error('Error en la solicitud:', error);
   }
+}
+
+async function getProductById(productId) {
+  const response = await fetch(`/product/${productId}`);
+  if (!response.ok) {
+    throw new Error('Producto no encontrado');
+  }
+  const product = await response.json();
+  return product;
 }
 
 
