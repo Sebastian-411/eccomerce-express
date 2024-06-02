@@ -35,7 +35,7 @@ document.getElementById('loginButton').addEventListener('click', async () => {
                 alert('Unexpected response format');
             }
         } else {
-            alert('Login failed');
+            alert('user does not exist');
         }
     } catch (error) {
         // Hide loading spinner
